@@ -1,0 +1,40 @@
+<%- include('layout/header') %>
+<%- include('layout/navbar') %>
+<div class="container">
+  <div class="row my-4">
+    <div class="col-lg-12">
+      <div class="table-responsive">
+        <% if (students!='') { %>
+          <table class="table table-striped text-center">
+            <thead>
+              <tr class="table-dark">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Profession</th>
+                <th>Course</th>
+                <th width="7%">Details</th>
+                <th width="7%">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% students.forEach((row, index) => { %>
+              <tr class="align-middle">
+              <td><%= index %></td>
+              <td><%= row.name %></td>
+              <td><%= row.email  %></td>
+              <td><%= row.profession  %></td>
+              <td><%= row.course  %></td>
+              <td><a href="/edit/<%= row._id%>" class="btn btn-primary btn-sm">EDIT</a></td>
+              <td><a href="/delete/<%= row._id%>" class="btn btn-danger btn-sm">DELETE</a></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } else { %> 
+          <h1 class="text-center text-secondary mt-5">No Students found in the database</h1>
+        <% } %> 
+      </div>
+    </div>
+  </div>
+</div>
