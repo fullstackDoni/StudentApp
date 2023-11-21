@@ -8,7 +8,7 @@
                 <h3 class="text-light">Edit Students</h3>
             </div>
             <div class="card-body p-4">
-                <form action="/api/edit/<%= student._id %>" method="post" id="edit-form">
+                <form action="/edit/<%= student._id %>" method="post" id="edit-form">
                     <input type="hidden" name="_method" value="PUT">
                     <div class="mb-3">
                         <label for="name">Name</label>
