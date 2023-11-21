@@ -30,7 +30,7 @@ router.route('/api/addStud')
 
         student.save()
             .then(() => {
-                res.render('/')
+                res.redirect("/");
             })
             .catch((err) => {
                 console.error(err);
@@ -57,10 +57,10 @@ router.route('/edit/:id')
         let id = req.params.id;
         Student.findById(id, (err, student) => {
             if (err) {
-                res.redirect('/');
+                res.redirect("/");
             } else {
                 if (student == null) {
-                    res.redirect('/');
+                    res.redirect("/");
                 } else {
                     res.render("edit_students", {
                         title: "Edit Students",
@@ -127,13 +127,22 @@ router.put('/api/edit/:id', (req, res) => {
     );
 });
 
-router.route('/delete/:id')
-    .get((req, res) => {
-        let id = req.params.id;
-        Student.findByIdAndDelete(id, (res) => {
-        });
-        res.redirect("/");
+router.delete('/api/delete/:id', (req, res) => {
+    const id = req.params.id;
+
+    Student.findByIdAndDelete(id, (err, deletedStudent) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Could not delete student' });
+        }
+        if (!deletedStudent) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        res.json({ message: 'Student deleted successfully', student: deletedStudent });
     });
+});
+
 
 module.exports = router;
 
