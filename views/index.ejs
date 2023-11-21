@@ -25,7 +25,13 @@
                                 <td><%= row.email %></td>
                                 <td><%= row.profession %></td>
                                 <td><%= row.course %></td>
-                                <td><a href="/edit/<%= row._id %>" class="btn btn-primary btn-sm">EDIT</a></td>
+<!--                                <td><a href="/edit/<%= row._id %>" class="btn btn-primary btn-sm">EDIT</a></td>-->
+                                <td>
+                                    <a href="/api/edit/<%= row._id %>" class="btn btn-primary btn-sm">EDIT</a>
+                                </td>
+<!--                                <td>-->
+<!--                                    <a href="/api/delete/<%= row._id %>" class="btn btn-danger btn-sm">EDIT</a>-->
+<!--                                </td>-->
                                 <td>
                                     <button class="btn btn-danger btn-sm" onclick="deleteStudent('<%= row._id %>')">
                                         DELETE
