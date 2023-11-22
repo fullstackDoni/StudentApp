@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Student = require('../models/students');
 
-const professions = ['Engineer', 'Doctor', 'IT', 'Other'];
-const courses = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Other'];
+const professions = ['Engineer', 'Doctor', 'IT', 'Teacher', 'CyberSport'];
+const courses = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Finished'];
 
 router.route('/addStud')
     .get((req, res) => {
@@ -157,12 +157,12 @@ router.delete('/api/delete/:id', (req, res) => {
     Student.findByIdAndDelete(id, (err, deletedStudent) => {
         if (err) {
             console.error(err);
-            return res.status(500).json({ error: 'Could not delete student' });
+            return res.status(500).json({error: 'Could not delete student'});
         }
         if (!deletedStudent) {
-            return res.status(404).json({ error: 'Student not found' });
+            return res.status(404).json({error: 'Student not found'});
         }
-        res.json({ message: 'Student deleted successfully', student: deletedStudent });
+        res.json({message: 'Student deleted successfully', student: deletedStudent});
     });
 });
 
